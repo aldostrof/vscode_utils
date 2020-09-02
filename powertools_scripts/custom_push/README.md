@@ -3,12 +3,12 @@
 This shortcut allows the creation of a VSCode-styled dialog menu which allows the execution of a custom git-push command.  
 The command which VSCode issues when you click "Push/Push To.." is:  
 
-    `git push <remote> <local_branch>:<remote_branch>`  
+    git push <remote> <local_branch>:<remote_branch>   
     
 Where the **local_branch** is setup, in .gitconfig file, to be tracking the remote **remote_branch**.  
 If you work with Gerrit (as I do at my workplace), you usually end up writing a git push command that looks like this:  
 
-    `git push remote_gerrit HEAD:refs/for/<branch>`  
+    git push remote_gerrit HEAD:refs/for/<branch>   
     
 in order to push the HEAD of your current branch for review.  
 Anyway, .gitconfig cannot be configured in order to have a refspec which allows HEAD of your current branch to be tracking the remote refs/for/branchname, as stated in [this](https://stackoverflow.com/questions/21946814/git-push-to-gerrit-with-a-tracking-branch) StackOverflow question.  
@@ -21,7 +21,7 @@ The **custom_push.js** script:
 
 The **custom_push.sh** bash script just executes the command:  
 
-    `git push <remote> HEAD:refs/for/<branch>`  
+    git push <remote> HEAD:refs/for/<branch>   
     
 where remote and branch are the inputs.
 Furthermore, this script searches the output of the above command for the Gerrit review link, and copies it to the clipboard.
