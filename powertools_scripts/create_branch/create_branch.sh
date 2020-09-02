@@ -1,6 +1,10 @@
 #!/bin/bash
 
-echo "Creating and checking-out requested branch: dev/$1 for repo in directory: $2..."
+BRANCH=$1
+ROOT=$2
 
-cd $2
-git checkout -b dev/$1 >> /dev/null
+echo -e "Creating and checking-out requested branch: $1 for repo in directory: $2.\n"
+cd $ROOT
+git checkout -b $BRANCH || echo -e "Error in branch creation" && exit 1;
+
+echo -e "Completed!"
