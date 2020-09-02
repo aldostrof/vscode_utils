@@ -1,19 +1,20 @@
 #!/bin/bash
 
-USE_EXISTING_USERDATA=0
-USE_EXISTING_EXTENSIONS=0
-SHORTCUT_NAME="code_shortcut"
-CODE_EXE_NAME="Code.exe"
+# colored output
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 NC='\033[0m' # No Color
+
+USE_EXISTING_INSTALL=0
 BASE_FOLDER=".."
 VSCODE_PATH="$BASE_FOLDER/VSCode_portable"
+#SHORTCUT_NAME="code_shortcut"
 
 # windows-related
 WIN_SCRIPT_FOLDER=$BASE_FOLDER/scripts/windows
 # TODO: make sure links are always unchanged when new VSCode versions are released
 WIN_VSCODE64BIT_DOWNLOAD_LINK="https://go.microsoft.com/fwlink/?Linkid=850641"
+#CODE_EXE_NAME="Code.exe"
 
 #TODO: fill for other OS
 

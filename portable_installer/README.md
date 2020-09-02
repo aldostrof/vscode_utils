@@ -32,9 +32,15 @@ This script:
 
 Then you can use the VSCode executable found in **VSCode_portable/** folder.  
 
-If you want to update your VSCode installation to a new version:
-1. Go to the [Download page](https://code.visualstudio.com/download) to obtain the latest VSCode portable zip.
-2. Unzip the downloaded file and copy your VSCode_portable/data folder into the unzipped folder.
+# Restrictions
+
+Some restrictions for the use of the script:
+- The only supported OS is Windows @ MinGw; support for other bash environments/OS is under development.
+- The script does not handle the update process; follow the below instructions to do so.
+
+    If you want to update your VSCode installation to a new version:
+    1. Go to the [Download page](https://code.visualstudio.com/download) to obtain the latest VSCode portable zip.
+    2. Unzip the downloaded file and copy your VSCode_portable/data folder into the unzipped folder.
 
 **NOTE**: future releases of the script will also be equipped with an auto-update feature.  
 
