@@ -151,8 +151,12 @@ echo -e "Creating data folder in ${VSCODE_PATH}...\n"
 mkdir $VSCODE_PATH/data
 echo -e "Creating user-data folder in ${VSCODE_PATH}/data...\n"
 mkdir ${VSCODE_PATH}/data/user-data
-echo -e "Creating extensions folder in ${VSCODE_PATH}/data...\n"
-mkdir ${VSCODE_PATH}/data/extensions
+
+if [ "$USE_EXISTING_INSTALL" -eq 0 ]; then
+    echo -e "Creating extensions folder in ${VSCODE_PATH}/data...\n"
+    mkdir ${VSCODE_PATH}/data/extensions
+fi
+
 echo -e "Creating tmp folder in ${VSCODE_PATH}/data...\n"
 mkdir $VSCODE_PATH/data/tmp
 
@@ -189,7 +193,7 @@ if [ "$USE_EXISTING_INSTALL" -eq 1 ]; then
     cp -R "$USERDATA_FOLDER"/* $VSCODE_PATH/data/user-data
 
     echo -e "Copying extensions from ${EXTENSIONS_FOLDER}...\n"
-    cp -R "$EXTENSIONS_FOLDER"/* $VSCODE_PATH/data/extensions
+    cp -R "$EXTENSIONS_FOLDER" $VSCODE_PATH/data
 fi
 
 echo -e "${GREEN}Directories created/copied correctly.${NC}\n"
