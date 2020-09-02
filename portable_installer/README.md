@@ -1,4 +1,4 @@
-# VSCode Portable installer
+# VSCode Portable Installer
 
 This folder contains utility scripts which can be used to ease the portability of VSCode installation through different platforms.
 Directory content:
