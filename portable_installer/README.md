@@ -19,10 +19,10 @@ This script:
 # Instructions
 
 1. Clone the repository and go the the **portable_installer/scripts** folder.
-2. Run the command:
-    `$ .vscode_portable_installer.sh`
-   or:
-    `$ .vscode_portable_installer.sh -m`
+2. Run the command:  
+    `$ .vscode_portable_installer.sh`  
+   or:  
+    `$ .vscode_portable_installer.sh -m`  
    if you want to re-use user-data and extensions folders from an existing local installation.
 3. If the procedure completed correctly, you will have the following folder structure:
 
