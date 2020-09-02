@@ -3,13 +3,24 @@ exports.execute = async (args) => {
 
     // s. https://code.visualstudio.com/api/references/vscode-api
     const vscode = args.require('vscode');
+    const { exec } = require('child_process');
+    const path = require('path');
+
     let rootPath = vscode.workspace.rootPath;
-    const myRemote = 'asr_gerrit';
+    // read the bash.path property from settings.json
+    let bashPath = vscode.workspace.getConfiguration("bash.path");    
+    // read the powertools.scripts.bash from settings.json
+    let scriptPath = vscode.workspace.getConfiguration("powertools.scripts.bash");
+    let scriptName = "custom_push.sh";
+    let scriptFull = path.join(scriptPath, scriptName);
 
     let remote = await vscode.window.showInputBox({ placeHolder: 'Enter remote name, if different from asr_gerrit...' });
     if(!remote || remote == null || remote == '')
     {   
-        remote = myRemote;
+        vscode.window.showInformationMessage(
+            `Insert a valid remote name.`
+        );
+        return;
     }
 
     vscode.window.showInformationMessage(
@@ -31,26 +42,18 @@ exports.execute = async (args) => {
         );
         return;
     }
-
-    const { exec } = require('child_process');
-    var yourscript = exec(`C:\\git\\Git\\bin\\bash.exe "D:\\strofald\\tools\\VSCode\\scripts\\custom_push.sh" '${ rootPath }' '${ remote }' '${ branch }'`,
+    
+    var yourscript = exec(`'${ bashPath }' '${ scriptFull }' '${ rootPath }' '${ remote }' '${ branch }'`,
             (error, stdout, stderr) => {
-                vscode.window.showInformationMessage(
-                    `Messages from STDOUT: ${stdout}`                    
-                );
+                vscode.window.showInformationMessage(`Messages from STDOUT: ${stdout}`);
                 
                 if(stderr != null && stderr != '') {
                     vscode.window.showInformationMessage(`Messages from STDERR: ${stderr}`);
-                    console.log(`stderr:\n${stderr}`);
                 }               
                 
                 if (error !== null && error != '') {
                     vscode.window.showInformationMessage(`Exec Error: ${error}`);
-                    console.log(`exec error:\n${error}`);
                 }
             });
-
-
-
 
 };
