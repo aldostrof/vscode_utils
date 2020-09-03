@@ -6,7 +6,7 @@ Directory content:
 |---- **windows**                       => Windows-specific scripts folder.  
 |---- **linux**                         => GNU/Linux-specific scripts folder.  
 |---- **mac**                           => MacOS-specific scripts folder.  
-|-- **settings**                        => contains common .json setting files, used for portability
+|-- **settings**                        => contains common .json setting files, used for portability  
 |---- **settings.json**                 => my VSCode settings file; made it generic in order to be portable across different installations.
 
 # VSCode Portable Installer
