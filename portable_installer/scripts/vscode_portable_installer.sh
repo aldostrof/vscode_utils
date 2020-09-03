@@ -176,7 +176,7 @@ if [ "$USE_EXISTING_INSTALL" -eq 1 ]; then
     # real windows user
     if [ "$MACHINE" = "LINUX_ON_WIN" ]; then
         CURR_USER="$(powershell.exe '$env:UserName')"
-	    CURR_USER=${CURR_USER%?} # remove trailing characters
+	CURR_USER=${CURR_USER%?} # remove trailing characters
     else
         CURR_USER="$(whoami)"
     fi
