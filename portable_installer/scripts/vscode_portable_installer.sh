@@ -15,6 +15,7 @@ WIN_SCRIPT_FOLDER=$BASE_FOLDER/scripts/windows
 # TODO: make sure links are always unchanged when new VSCode versions are released
 WIN_VSCODE64BIT_DOWNLOAD_LINK="https://go.microsoft.com/fwlink/?Linkid=850641"
 #CODE_EXE_NAME="Code.exe"
+LINUX_ON_WIN_TEST=/proc/version
 
 #TODO: fill for other OS
 
@@ -71,7 +72,11 @@ if [ "$ENV" = "Cygwin" ] || [ "$ENV" = "MinGw" ] || [ "$ENV" = "MSYS" ]; then
 elif [ "$ENV" = "Mac" ]; then
     MACHINE=MAC
 elif [ "$ENV" = "Linux" ]; then
-    MACHINE=LINUX
+    if [ grep 'microsoft\|Microsoft\|WSL' $LINUX_ON_WIN_TEST &> /dev/null ]; then
+        MACHINE=LINUX_ON_WIN
+    else
+        MACHINE=LINUX
+    fi
 fi
 
 while getopts ":hm" opt; do
@@ -107,7 +112,7 @@ fi
 
 # TODO: add checks for other folders belonging to other OS
 
-if [ "$MACHINE" = "WIN" ]; then
+if [ "$MACHINE" = "WIN" ] || [ "$MACHINE" = "LINUX_ON_WIN" ]; then
     DOWNLOAD_LINK=$WIN_VSCODE64BIT_DOWNLOAD_LINK
 fi
 
@@ -167,9 +172,15 @@ mkdir $VSCODE_PATH/data/tmp
 if [ "$USE_EXISTING_INSTALL" -eq 1 ]; then
 
     echo -e "Requested copy from existing installation.\n"
-    CURR_USER=$(whoami)
+    # if we are on LINUX_ON_WIN (WSL, Windows Ubuntu bash, etc) the bash user is different from the
+    # real windows user
+    if [ "$MACHINE" = "LINUX_ON_WIN" ]; then
+        CURR_USER=$(powershell.exe '$env:UserName')
+    else
+        CURR_USER=$(whoami)
+    fi
 
-    # TODO: add support for other machines
+    # TODO: add support for other machines/env
     if [ "$MACHINE" = "WIN" ]; then
         if [ "$ENV" = "Cygwin" ]; then
             USERDATA_FOLDER="/cygdrive/c/Users/$CURR_USER/AppData/Roaming/Code"
@@ -178,6 +189,9 @@ if [ "$USE_EXISTING_INSTALL" -eq 1 ]; then
             USERDATA_FOLDER="/c/Users/$CURR_USER/AppData/Roaming/Code"
             EXTENSIONS_FOLDER="/c/Users/$CURR_USER/.vscode/extensions"
         fi
+    elif [ "$MACHINE" = "LINUX_ON_WIN" ]; then
+        USERDATA_FOLDER="/mnt/c/Users/$CURR_USER/AppData/Roaming/Code"
+        EXTENSIONS_FOLDER="/mnt/c/Users/$CURR_USER/.vscode/extensions"
     fi
 
     if [ ! -d "$USERDATA_FOLDER" ] || [ ! -d "$EXTENSIONS_FOLDER" ]; then    

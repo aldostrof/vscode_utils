@@ -22,9 +22,13 @@ This script:
 
 1. Clone the repository and go the the **portable_installer/scripts** folder.
 2. Run the command:  
+
     `$ ./vscode_portable_installer.sh`  
+
    or:  
+
     `$ ./vscode_portable_installer.sh -m`  
+
    if you want to re-use user-data and extensions folders from an existing local installation.
 3. If the procedure completed correctly, you will have the following folder structure:
 
@@ -37,7 +41,9 @@ Then you can use the VSCode executable found in **VSCode_portable/** folder.
 # Restrictions
 
 Some restrictions for the use of the script:
-- The only supported OS is Windows @ MinGw; support for other bash environments/OS is under development.
+- The only supported OS/Bash is Windows/MinGw; support for other bash environments/OS is under development.
+- **wget** or **curl** binaries are required.
+- **unzip** binary is required.
 - The script does not handle the update process; follow the below instructions to do so.
 
     If you want to update your VSCode installation to a new version:
