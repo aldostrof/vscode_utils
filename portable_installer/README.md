@@ -53,7 +53,8 @@ Some restrictions for the use of the script:
 **NOTE**: future releases of the script will also be equipped with an auto-update feature.  
 
 # TODO
-[ ] - Extend and test to other Windows environments   
+[x] - Extend and test to other Windows environments   
 [ ] - Extend and test to other OS  
-[ ] - Test wget download  
+[x] - Test wget download  
 [ ] - Implement auto-update feature  
+[ ] - Check if user-data/extensions are empty and give a warning
