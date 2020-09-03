@@ -72,10 +72,10 @@ if [ "$ENV" = "Cygwin" ] || [ "$ENV" = "MinGw" ] || [ "$ENV" = "MSYS" ]; then
 elif [ "$ENV" = "Mac" ]; then
     MACHINE=MAC
 elif [ "$ENV" = "Linux" ]; then
-    if [ grep 'microsoft\|Microsoft\|WSL' $LINUX_ON_WIN_TEST &> /dev/null ]; then
-        MACHINE=LINUX_ON_WIN
+    if grep -q 'microsoft\|Microsoft\|WSL' $LINUX_ON_WIN_TEST; then
+            MACHINE=LINUX_ON_WIN
     else
-        MACHINE=LINUX
+            MACHINE=LINUX
     fi
 fi
 
