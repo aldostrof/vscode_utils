@@ -28,7 +28,7 @@ function print_help() {
     echo ""
     echo "    Syntax:"
     echo ""
-    echo "        -m USER_DATA_FOLDER"
+    echo "        -m"
     echo "           Optional argument, used to specify if you want to copy user-data and extensions folders from an existing VSCode installation on local machine."
     echo "           If not specified, empty user-data and extensions folders will be created."
     echo ""
