@@ -41,7 +41,7 @@ Then you can use the VSCode executable found in **VSCode_portable/** folder.
 # Restrictions
 
 Some restrictions for the use of the script:
-- The only supported OS/Bash is Windows/MinGw; support for other bash environments/OS is under development.
+- Works on Windows (supported bash: MinGw, WSL/Ubuntu); support for other OS is under development.
 - **wget** or **curl** binaries are required.
 - **unzip** binary is required.
 - The script does not handle the update process; follow the below instructions to do so.

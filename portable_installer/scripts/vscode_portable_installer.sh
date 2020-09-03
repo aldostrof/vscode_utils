@@ -72,10 +72,10 @@ if [ "$ENV" = "Cygwin" ] || [ "$ENV" = "MinGw" ] || [ "$ENV" = "MSYS" ]; then
 elif [ "$ENV" = "Mac" ]; then
     MACHINE=MAC
 elif [ "$ENV" = "Linux" ]; then
-    if grep -q 'microsoft\|Microsoft\|WSL' $LINUX_ON_WIN_TEST; then
-            MACHINE=LINUX_ON_WIN
+    if grep 'microsoft\|Microsoft\|WSL' $LINUX_ON_WIN_TEST &> /dev/null; then
+        MACHINE=LINUX_ON_WIN
     else
-            MACHINE=LINUX
+        MACHINE=LINUX
     fi
 fi
 
@@ -123,7 +123,7 @@ echo -e "Starting VSCode portable zip download.\n"
 # download VSCode portable zip in the script parent directory
 # TODO: test wget
 if [ -x "$(which wget 2>/dev/null)" ] ; then
-    wget -q $DOWNLOAD_LINK || ( print_error "Error downloading VSCode.\n" && exit 1 );
+    wget -q --content-disposition $DOWNLOAD_LINK || ( print_error "Error downloading VSCode.\n" && exit 1 );
 elif [ -x "$(which curl 2>/dev/null)" ]; then
     curl $DOWNLOAD_LINK -Ls -O -J || ( print_error "Error downloading VSCode.\n" && exit 1 );
 else
@@ -175,9 +175,10 @@ if [ "$USE_EXISTING_INSTALL" -eq 1 ]; then
     # if we are on LINUX_ON_WIN (WSL, Windows Ubuntu bash, etc) the bash user is different from the
     # real windows user
     if [ "$MACHINE" = "LINUX_ON_WIN" ]; then
-        CURR_USER=$(powershell.exe '$env:UserName')
+        CURR_USER="$(powershell.exe '$env:UserName')"
+	    CURR_USER=${CURR_USER%?} # remove trailing characters
     else
-        CURR_USER=$(whoami)
+        CURR_USER="$(whoami)"
     fi
 
     # TODO: add support for other machines/env
