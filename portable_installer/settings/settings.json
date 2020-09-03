@@ -1,0 +1,112 @@
+{   
+/**************************** Colors & Theme **********************************/
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.colorTheme": "Gruvbox Dark Medium",
+
+/************************** Terminal settings *********************************/
+
+    // Remember to install powerline fonts!    
+    // go here: https://github.com/powerline/fonts and use install.sh (GNU/Linux)
+    // or install.ps1 (Windows) to install all of them.
+    "terminal.integrated.fontFamily": "Ubuntu Mono derivative Powerline",
+
+/************************** Windows */
+
+    "terminal.integrated.shell.windows": "insert_your_bash_exe_path_here",
+    // Keep bash from doing a 'cd ${HOME}'
+    "terminal.integrated.env.windows": 
+    {
+        "CHERE_INVOKING": "1"
+    },
+    // Make it a login shell
+    "terminal.integrated.shellArgs.windows": 
+    [ 
+        "-l"
+    ],
+    
+    "terminal.external.windowsExec": "insert_your_bash_exe_path_here",
+
+/*************************** Editor settings **********************************/
+    "editor.rulers": 
+    [
+        80
+    ],
+    "editor.renderWhitespace": "all",
+    "editor.renderControlCharacters": false,
+    "workbench.editor.enablePreview": false,
+    "editor.detectIndentation" : false,
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true,
+    "editor.defaultFormatter": "xaver.clang-format",
+    "files.associations": {
+        "*.mak": "makefile",
+        "*.mk": "makefile",
+        "*.clang-format": "yaml",
+        "*_clang-format": "yaml",
+        "*tmp*" : "config-spec"
+    },    
+    // File-specific editor settings
+    "[makefile]": {
+        "editor.insertSpaces": true,
+        "editor.detectIndentation": false,
+        "editor.tabSize": 4
+    },
+
+/*********************** Extensions settings **********************************/
+    "clang-format.executable": "insert_your_clang_format_exe_path_here",
+    "git.enabled":true,
+    "git.path": "insert_your_git_exe_path_here",
+    "gitlens.advanced.repositorySearchDepth": 5,
+    "gitlens.views.repositories.files.layout": "tree",
+    "gitlens.advanced.messages": {
+        "suppressGitVersionWarning": true
+    },
+    "smartsemicolon.autoLineChange": true,
+    "C_Cpp.autocomplete": "Default",
+    "ego.power-tools.user": {
+        "buttons": [
+            {
+                "text": "Open C/C++ Configuration",
+                "tooltip": "C/C++ configuration for include paths and symbols defines.",
+                "action": {
+                    "type": "command",
+                    "command": "C_Cpp.ConfigurationEditJSON"
+                }
+            },
+            {
+                "text": "Open VSCode JSON Configuration",
+                "tooltip": "Open VSCode JSON Configuration",
+                "action": {
+                    "type": "command",
+                    "command": "workbench.action.openSettingsJson"
+                }
+            },
+        ],
+        "commands": {
+            "custom_push": {
+                "script": "custom_push.js",
+                "button": {
+                    "text": "Push to custom branch"
+                }
+            }
+        }
+    },
+    "cSpell.language": "en,it,en-GB,it-IT",    
+    "todo-tree.tree.showScanModeButton": false,
+    "todo-tree.highlights.defaultHighlight": {
+        "icon": "alert",
+        "type": "text",
+        "background": "red",
+        "opacity": 20,
+        "iconColour": "yellow"
+    },
+
+/**************************** Other settings **********************************/
+    "files.autoSave": "off",
+    "explorer.sortOrder": "type",
+    "window.zoomLevel": 0,
+    "diffEditor.ignoreTrimWhitespace": false,
+    "bash.path" : "insert_your_bash_exe_path_here",
+    "powertools.scripts.bash": "insert_path_to_sh_scripts_for_powertools_here",
+    "smartsemicolon.enable": true
+}

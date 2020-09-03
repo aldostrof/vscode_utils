@@ -1,6 +1,4 @@
-# VSCode Portable Installer
-
-This folder contains utility scripts which can be used to ease the portability of VSCode installation through different platforms.
+This folder contains utility scripts and files which can be used to ease the portability of VSCode installation through different platforms.
 Directory content:
 
 |-- **scripts**                         => contains the scripts which are actually in this folder.  
@@ -8,6 +6,10 @@ Directory content:
 |---- **windows**                       => Windows-specific scripts folder.  
 |---- **linux**                         => GNU/Linux-specific scripts folder.  
 |---- **mac**                           => MacOS-specific scripts folder.  
+|-- **settings**                        => contains common .json setting files, used for portability
+|---- **settings.json**                 => my VSCode settings file; made it generic in order to be portable across different installations.
+
+# VSCode Portable Installer
 
 The **vscode_portable_installer.sh** script is in charge of handling the whole download and folder setup process.  
 This script:  

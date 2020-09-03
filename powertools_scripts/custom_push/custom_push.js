@@ -8,13 +8,13 @@ exports.execute = async (args) => {
 
     let rootPath = vscode.workspace.rootPath;
     // read the bash.path property from settings.json
-    let bashPath = vscode.workspace.getConfiguration("bash.path");    
+    let bashPath = vscode.workspace.getConfiguration("bash").get('path');    
     // read the powertools.scripts.bash from settings.json
-    let scriptPath = vscode.workspace.getConfiguration("powertools.scripts.bash");
+    let scriptPath = vscode.workspace.getConfiguration('powertools.scripts').get('bash');
     let scriptName = "custom_push.sh";
     let scriptFull = path.join(scriptPath, scriptName);
 
-    let remote = await vscode.window.showInputBox({ placeHolder: 'Enter remote name, if different from asr_gerrit...' });
+    let remote = await vscode.window.showInputBox({ placeHolder: 'Enter remote name...' });
     if(!remote || remote == null || remote == '')
     {   
         vscode.window.showInformationMessage(
@@ -43,7 +43,7 @@ exports.execute = async (args) => {
         return;
     }
     
-    var yourscript = exec(`'${ bashPath }' '${ scriptFull }' '${ rootPath }' '${ remote }' '${ branch }'`,
+    var yourscript = exec(`"${ bashPath }" "${ scriptFull }" '${ rootPath }' '${ remote }' '${ branch }'`,
             (error, stdout, stderr) => {
                 vscode.window.showInformationMessage(`Messages from STDOUT: ${stdout}`);
                 
