@@ -23,7 +23,7 @@ cd "$ROOTPATH"
 # So here we redirect all output (stderr,stdout) to OUTPUT variable, and then if the command
 # executed correctly, we print the output to stdout; if command completed with
 # errors, we redirect its output to stderr.
-OUTPUT=$(git push blabla HEAD:refs/for/$BRANCH 2>&1)
+OUTPUT=$(git push $REMOTE HEAD:refs/for/$BRANCH 2>&1)
 
 if [ ! $? -eq 0 ]; then
     >&2 echo "Git push terminated with errors: ${OUTPUT}"
