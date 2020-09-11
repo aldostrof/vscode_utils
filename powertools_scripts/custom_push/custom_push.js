@@ -27,11 +27,11 @@ exports.execute = async (args) => {
         `Pushing to remote: '${ remote }'!`
     );
 
-    let branch = await vscode.window.showInputBox({ placeHolder: 'Enter remote branch name (refs/for/<your_input>)..' });
+    let branch = await vscode.window.showInputBox({ placeHolder: 'Enter remote branch name..' });
     if(branch)
     {
         vscode.window.showInformationMessage(
-            `Pushing current HEAD to remote branch: 'refs/for/${ branch }'!`
+            `Pushing current HEAD to remote branch: '${ branch }'!`
         );
 
     }

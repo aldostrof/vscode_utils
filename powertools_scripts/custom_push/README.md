@@ -9,21 +9,25 @@ Where the **local_branch** is setup, in .gitconfig file, to be tracking the remo
 If you work with [Gerrit](https://www.gerritcodereview.com/) (as I do at my workplace), you usually end up writing a git push command that looks like this:  
 
     git push <gerrit_remote> HEAD:refs/for/<current_local_branch>   
+
+or:  
+
+    git push <gerrit_remote> HEAD:refs/changes/<changeID>  
     
 in order to push the HEAD of your current branch for review.  
-Anyway, .gitconfig file cannot be configured in order to have a refspec which allows HEAD of your current branch to be tracking the remote refs/for/current_branch, as stated in [this](https://stackoverflow.com/questions/21946814/git-push-to-gerrit-with-a-tracking-branch) StackOverflow question.  
+Anyway, .gitconfig file cannot be configured in order to have a refspec which allows HEAD of your current branch to be tracking the remote refs/... branch, as stated in [this](https://stackoverflow.com/questions/21946814/git-push-to-gerrit-with-a-tracking-branch) StackOverflow question.  
 
 Since I use VSCode with the [vscode-powertools](https://marketplace.visualstudio.com/items?itemName=ego-digital.vscode-powertools) extensions, I developed a JS script and a bash script that allow to automatize this process.  
 The **custom_push.js** script:  
 - Asks for remote name
-- Asks for current_branch name (the one that goes into refs/for/[...])
+- Asks for branch name (tipically: *refs/for/branch_name* or *refs/changes/change_id*)
 - Runs the **custom_push.sh** script to execute the push command with the given inputs.
 
 The **custom_push.sh** bash script just executes the command:  
 
-    git push <remote> HEAD:refs/for/<current_branch>   
+    git push <remote> HEAD:<remote_branch>
     
-where remote and current_branch are the inputs.  
+where remote and remote_branch are the inputs.  
 Furthermore, this script searches the output of the above command for the Gerrit review link, and copies it to the clipboard.
 
 # Installation & Usage
